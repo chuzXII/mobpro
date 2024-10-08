@@ -25,7 +25,19 @@ class dbhelpersqli(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         onCreate(db)
     }
+    fun isUserRegistered(email: String, username: String): Boolean {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_EMAIL = ? OR $COLUMN_USERNAME = ?"
+        val cursor = db.rawQuery(query, arrayOf(email, username))
+        val isRegistered = cursor.count > 0
+        cursor.close()
+        return isRegistered
+    }
+
     fun insertUser(fullname: String,username: String,date:String ,email: String, password: String, nohp: Int,alamat: String,jk: String): Long {
+        if (isUserRegistered(email, username)) {
+            return -1
+        }
         val db = this.writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_FULLNAME, fullname)

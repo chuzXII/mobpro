@@ -116,12 +116,13 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="131dp"
-        android:layout_height="89dp"
+        android:layout_width="147dp"
+        android:layout_height="150dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img1" />
+        app:srcCompat="@drawable/img1"
+        android:transitionName="logoTransition"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

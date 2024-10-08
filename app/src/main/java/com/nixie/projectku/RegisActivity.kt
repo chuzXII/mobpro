@@ -104,7 +104,7 @@ class RegisActivity : AppCompatActivity() {
                 Toast.makeText(this, validationResult, Toast.LENGTH_SHORT).show()
             } else {
                 if (validatePasswords(password, cpassword)) {
-                    dbHelper.insertUser(
+                    val result = dbHelper.insertUser(
                         fullname,
                         username,
                         date,
@@ -114,9 +114,14 @@ class RegisActivity : AppCompatActivity() {
                         alamat,
                         selectedItem
                     )
-                    Toast.makeText(this, "berhasil", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
+                    if (result == -1L) {
+                        Toast.makeText(this, "Pengguna sudah terdaftar. Silakan gunakan email atau username lain.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Pendaftaran berhasil!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
+
                 } else {
                     Toast.makeText(this, "gagal", Toast.LENGTH_SHORT).show()
 
