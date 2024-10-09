@@ -24,23 +24,15 @@ class SplashActivity : AppCompatActivity() {
         }
         val logo = findViewById<ImageView>(R.id.logo)
 
-        // Memuat animasi
-        val moveUpAnimation = AnimationUtils.loadAnimation(this, R.anim.move_up)
-        moveUpAnimation.fillAfter = true
-        // Menjalankan animasi
-        logo.startAnimation(moveUpAnimation)
-
-        moveUpAnimation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation?) {}
-
-            override fun onAnimationEnd(animation: Animation?) {
-                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this@SplashActivity, logo, "logoTransition")
-                startActivity(intent, options.toBundle())
-                finish()
-            }
-
-            override fun onAnimationRepeat(animation: Animation?) {}
-        })
+        Handler().postDelayed({
+            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this@SplashActivity,
+                logo,
+                "logoTransition"
+            )
+            startActivity(intent, options.toBundle())
+            finish()
+        }, 2000)
     }
 }

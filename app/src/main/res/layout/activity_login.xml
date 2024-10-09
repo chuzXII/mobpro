@@ -119,10 +119,10 @@
         android:layout_width="147dp"
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
+        android:transitionName="logoTransition"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img1"
-        android:transitionName="logoTransition"/>
+        app:srcCompat="@drawable/img1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
